@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<structure label-on="Transition" type="fa">
+    <name/>
+    <description/>
+    <alphabet type="classical">
+        <symbol>a</symbol>
+        <symbol>b</symbol>
+    </alphabet>
+    <stateSet>
+        <state sid="0">
+            <y>100</y>
+            <x>100</x>
+        </state>
+        <state sid="1">
+            <y>96</y>
+            <x>217</x>
+        </state>
+        <state sid="2">
+            <y>104</y>
+            <x>324</x>
+        </state>
+    </stateSet>
+    <initialStateSet>
+        <stateID>0</stateID>
+    </initialStateSet>
+    <transitionSet>
+        <transition tid="1">
+            <from>0</from>
+            <to>1</to>
+            <read>b</read>
+        </transition>
+        <transition tid="2">
+            <from>1</from>
+            <to>1</to>
+            <read>b</read>
+        </transition>
+        <transition tid="5">
+            <from>0</from>
+            <to>0</to>
+            <read>b</read>
+        </transition>
+        <transition tid="6">
+            <from>0</from>
+            <to>0</to>
+            <read>a</read>
+        </transition>
+        <transition tid="7">
+            <from>1</from>
+            <to>2</to>
+            <read>b</read>
+        </transition>
+        <transition tid="8">
+            <from>1</from>
+            <to>2</to>
+            <read>a</read>
+        </transition>
+        <transition tid="9">
+            <from>2</from>
+            <to>2</to>
+            <read>b</read>
+        </transition>
+        <transition tid="10">
+            <from>2</from>
+            <to>2</to>
+            <read>a</read>
+        </transition>
+    </transitionSet>
+    <acc type="buchi">
+        <stateID>1</stateID>
+    </acc>
+</structure>

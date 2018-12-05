@@ -24,5 +24,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/omega"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/roll-library"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
