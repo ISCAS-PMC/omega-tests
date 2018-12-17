@@ -3,6 +3,7 @@ package omega.omega_tests;
 import omega.automata.NBA;
 import omega.main.options.CmdLineParser;
 import omega.main.options.CmdLineParser.ComplementCommandOptions;
+import omega.operations.complement.slice.ComplementOrder;
 import omega.operations.complement.slice.ComplementSliceBreakpoint;
 import roll.words.Alphabet;
 
@@ -33,9 +34,9 @@ public class SlicebpTest {
         buchi.setInitial(0);
         
         System.out.println(buchi.toDot());
-        String[] arg = { "complement", "a.hoa", "-algo=SLICEBP" };
-        CmdLineParser parser = new CmdLineParser(args);
-        ComplementCommandOptions options = (ComplementCommandOptions) parser.getCommand();
+//        String[] arg = { "complement", "a.hoa", "--algo=slicebp" };
+//        CmdLineParser parser = new CmdLineParser(args);
+        ComplementCommandOptions options = new ComplementCommandOptions();
         ComplementSliceBreakpoint complement = new ComplementSliceBreakpoint(options, buchi);
         complement.explore();
         System.out.println(complement.toDot());
@@ -67,7 +68,18 @@ public class SlicebpTest {
         complement = new ComplementSliceBreakpoint(options, buchi);
         complement.explore();
         System.out.println(complement.toDot());
-
+        
+        buchi = ComplementRun.getTest1();
+        System.out.println(buchi.toDot());
+        complement = new ComplementSliceBreakpoint(options, buchi);
+        complement.explore();
+        System.out.println(complement.toDot());
+        System.out.println(complement.toBA());
+        
+        ComplementOrder order = new ComplementOrder(options, buchi);
+        order.explore();
+        System.out.println(order.toDot());
+        System.out.println(order.toBA());
     }
 
 }
