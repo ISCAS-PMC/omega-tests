@@ -13,7 +13,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
@@ -25,5 +25,24 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/omega"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/roll-library"/>
+	<classpathentry kind="lib" path="/omega/lib/jhoafparser-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/liyong/git/roll-library/lib/rabit.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="rabit"/>
+			<attribute name="maven.artifactId" value="rabit"/>
+			<attribute name="maven.version" value="0.0.1"/>
+			<attribute name="maven.scope" value="system"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/liyong/.m2/repository/net/sf/trove4j/trove4j/3.0.3/trove4j-3.0.3.jar" sourcepath="/home/liyong/.m2/repository/net/sf/trove4j/trove4j/3.0.3/trove4j-3.0.3-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="net.sf.trove4j"/>
+			<attribute name="maven.artifactId" value="trove4j"/>
+			<attribute name="maven.version" value="3.0.3"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
