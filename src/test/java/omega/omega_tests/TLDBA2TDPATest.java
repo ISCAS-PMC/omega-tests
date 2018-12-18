@@ -10,6 +10,7 @@ import omega.main.options.CmdLineParser.ComplementCommandOptions;
 import omega.operations.complement.ncsb.ComplementNcsbOtf;
 import omega.operations.complement.slice.ComplementOrder;
 import omega.operations.complement.slice.ComplementSliceBreakpoint;
+import omega.operations.complement.slice.ComplementTSliceBreakpoint;
 import omega.operations.convert.NBA2TNBA;
 import omega.operations.convert.TNBA2NBA;
 import omega.operations.determinize.bracket.DeterminizeBacket;
@@ -123,11 +124,15 @@ public class TLDBA2TDPATest {
 		opts.lazyB = true;
 //		opts.madjd = true;
 		opts.madjs = true;
-		ComplementSliceBreakpoint bk = new ComplementSliceBreakpoint(opts, nba);
-		bk.explore();
+//		ComplementSliceBreakpoint bk = new ComplementSliceBreakpoint(opts, nba);
+//		bk.explore();
+		tnba = new NBA2TNBA(nba);
+		tnba.explore();
+		ComplementTSliceBreakpoint tbk = new ComplementTSliceBreakpoint(opts, tnba);
+		tbk.explore();
 		System.out.println("Done...");
 		try {
-			parser.print(bk, new FileOutputStream("/home/liyong/tools/ldba/c14.hoa"));
+			parser.print(tbk, new FileOutputStream("/home/liyong/tools/ldba/tc14.hoa"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
