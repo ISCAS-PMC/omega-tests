@@ -46,13 +46,13 @@ public class Spot {
     	File fileD = new File(D);
     	// determinize
         String command = "autfilt --deterministic " + fileA.getAbsolutePath() + " -o " + fileD.getAbsolutePath();
-        executeSpot(command, fileD.getAbsolutePath());
+        executeSpot(command);
         
         // complement
         String C = "C.hoa";
         File fileC = new File(C);
         command = "autfilt --complement -B -S " + fileD.getAbsolutePath() + " -o " + fileC.getAbsolutePath();
-        executeSpot(command, fileC.getAbsolutePath());
+        executeSpot(command);
         
         // check equivalence of C and complement
         File fileCC = new File("CC.hoa");
@@ -67,15 +67,7 @@ public class Spot {
 	
     private static boolean spotEquiv(String A1, String A2) {
     	String command = "autfilt --equivalent-to=" + A1 + " " + A2;
-    	final Runtime rt = Runtime.getRuntime();
-    	Process proc = null;
-        try {
-            proc = rt.exec(command);
-            proc.waitFor();
-        } catch (IOException | InterruptedException e1) {
-            e1.printStackTrace();
-        }
-        System.out.println(command);
+    	Process proc = executeSpot(command);
         final BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
         String line = null;
         boolean result = false;
@@ -92,7 +84,7 @@ public class Spot {
         return result;
     }
 	
-    private static void executeSpot(String command, String output) {
+    private static Process executeSpot(String command) {
     	final Runtime rt = Runtime.getRuntime();
     	Process proc = null;
         try {
@@ -102,6 +94,7 @@ public class Spot {
             e1.printStackTrace();
         }
         System.out.println(command);
+        return proc;
     }
 
 
