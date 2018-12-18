@@ -37,7 +37,22 @@ public class UtilTest {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    	return spotEquiv(fileA.getAbsolutePath(), fileB.getAbsolutePath());
+    	return spotEquivalence(fileA.getAbsolutePath(), fileB.getAbsolutePath());
+	}
+	
+	public static String spotComplement(String input) {
+    	String D = "D.hoa";
+    	File fileD = new File(D);
+    	// determinize
+        String command = "autfilt --deterministic " + input + " -o " + fileD.getAbsolutePath();
+        executeSpot(command);
+        
+        // complement
+        String C = "C.hoa";
+        File fileC = new File(C);
+        command = "autfilt --complement -B -S " + fileD.getAbsolutePath() + " -o " + fileC.getAbsolutePath();
+        executeSpot(command);
+        return C;
 	}
 	
 	public static boolean spotTestComplement(Automata A, Automata complement) {
@@ -68,10 +83,10 @@ public class UtilTest {
             e.printStackTrace();
         }
     	
-        return spotEquiv(fileC.getAbsolutePath(), fileCC.getAbsolutePath());
+        return spotEquivalence(fileC.getAbsolutePath(), fileCC.getAbsolutePath());
     }
 	
-    private static boolean spotEquiv(String A1, String A2) {
+    public static boolean spotEquivalence(String A1, String A2) {
     	String command = "autfilt --equivalent-to=" + A1 + " " + A2;
     	Process proc = executeSpot(command);
         final BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
@@ -101,6 +116,11 @@ public class UtilTest {
         }
         System.out.println(command);
         return proc;
+    }
+    
+    public static boolean spotTestComplement(String A, String complement) {
+    	String c = spotComplement(A);
+    	return spotEquivalence(c, complement);
     }
     
     public static void output(BA<?> A, PrintStream out) {
