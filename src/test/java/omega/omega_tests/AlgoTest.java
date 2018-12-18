@@ -27,10 +27,10 @@ import omega.util.parser.AutomataPrinter;
 import omega.util.parser.hoa.HOAParser;
 import roll.words.Alphabet;
 
-public class ComplementTest {
+public class AlgoTest {
 	
 	public static void main(String []args) {
-		testBuchiStore();
+		testDeterminizeBuchiStore();
 	}
 	
 	public static void testRamdomly() {
@@ -109,7 +109,35 @@ public class ComplementTest {
 				e.printStackTrace();
 			}
 		}
-		
+	}
+	
+	public static void testDeterminizeBuchiStore() {
+		String dir = "/home/liyong/tools/buchistore/";
+		File fDir = new File(dir);
+		for(File file : fDir.listFiles()) {
+			if(! file.getName().endsWith(".hoa")) {
+				continue;
+			}
+			//now check complement
+			HOAParser parser = new HOAParser();
+			parser.parse(file.getAbsolutePath());
+			NBA nba = parser.get();
+			NBA2TNBA tnba = new NBA2TNBA(nba);
+			tnba.explore();
+			DeterminizeTPiterman piterman = new DeterminizeTPiterman(tnba);
+			piterman.explore();
+			String out = "determinize.hoa";
+			try {
+				parser.print(tnba, new FileOutputStream("tA.hoa"));
+				parser.print(piterman, new FileOutputStream(out));
+				if(! UtilTest.spotEquivalence(file.getAbsolutePath(), out)) {
+					System.out.println("" + file.getAbsolutePath());
+					break;
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
 	}
     
 
